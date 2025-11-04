@@ -1,0 +1,85 @@
+.board {
+  display: grid;
+  height: 100%;
+  aspect-ratio: 1;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 3.33%;
+    background-image:
+            linear-gradient(to right, var(--color-black) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--color-black) 1px, transparent 1px);
+    background-size: 7.13% 7.13%;
+  }
+
+  &Wrapper {
+    width: min(90dvh, 100%);
+    height: auto;
+    aspect-ratio: 1;
+    background: var(--color-board);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    padding: 5%;
+  }
+
+  &Legend {
+    position: absolute;
+    display: flex;
+    color: var(--color-black);
+    font-size: 18px;
+    text-transform: uppercase;
+
+    &X {
+      justify-content: space-between;
+      inset: -4% 2%;
+    }
+
+    &Y {
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      inset: 2% -4%;
+    }
+  }
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+
+  &:hover::before, &:focus-visible::before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px dashed var(--color-white);
+    z-index: 600;
+  }
+
+  &:focus-within {
+    outline: none;
+  }
+}
+
+.stone {
+  width: 90%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: var(--box-shadow);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 500;
+
+  &.black {
+    background: radial-gradient(at 30% 30%, #515151 0%, var(--color-black) 100%);
+  }
+
+  &.white {
+    background: radial-gradient(at 30% 30%, var(--color-white) 10%, #9a9a9a 100%);
+  }
+}

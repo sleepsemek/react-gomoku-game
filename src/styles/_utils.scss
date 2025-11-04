@@ -1,11 +1,5 @@
 @use 'helpers' as *;
 
-.container {
-  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
-  padding-inline: var(--container-padding-x);
-  margin-inline: auto;
-}
-
 .visually-hidden {
   @include visually-hidden;
 }

@@ -1,22 +1,20 @@
 @use 'helpers' as *;
 
 :root {
-  --color-white: #FFF;
-  --color-black: #000;
-  --color-dark: #141414;
-  --color-dark-10: #1A1A1A;
-  --color-dark-15: #262626;
-  --color-dark-20: #333;
-  --color-dark-40: #666;
-  --color-gray-50: #7E7E81;
-  --color-gray-60: #98989A;
-  --color-accent: #FFD11A;
-  //--font-family-base: 'Inter', sans-serif;
-  --container-width: 1600px;
-  --container-padding-x: 16px;
-  --transition-duration: 0.2s;
+  --color-white: #F2F2F2;
+  --color-black: #111111;
+  --color-accent: #DCB35C;
 
-  @include laptop {
-    --container-width: 1280px;
-  }
+  --color-board: #B98A3A;
+  --color-surface: #1A1A1A;
+  --color-container: #232323;
+  --color-card-bg: #FFFFFF0C;
+
+  --color-accent-light: #5A9FEEFF;
+  --color-secondary: #6C757DFF;
+
+  --font-family-base: 'Inter', sans-serif;
+
+  --transition-duration: 0.2s;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }

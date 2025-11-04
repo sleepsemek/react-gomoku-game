@@ -1,37 +1,11 @@
 @use 'helpers' as *;
 
 body {
-  //display: flex;
-  //flex-direction: column;
-  //font-family: var(--font-family-base);
-  //color: var(--color-gray-50);
-  //letter-spacing: -0.03em;
-  //background-color: var(--color-dark);
+  font-family: var(--font-family-base);
 }
 
-main {
-  flex-grow: 1;
-}
-
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-  color: var(--color-white);
-}
-
-h1, .h1 {
-  line-height: 1.2;
-}
-
-h2, .h2 {
-  line-height: 1.3;
-}
-
-h3, .h3 {
-  line-height: 1.5; // дефолтный браузерный 150% от body, можно не писать
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
 }
 
 a,
@@ -45,19 +19,19 @@ svg * {
 }
 
 a {
-  color: inherit; // наследуем от body
+  color: inherit;
 
   @include hover {
     color: var(--color-white);
   }
 
-  &[class] { // отключаем подчеркивание у тех ссылок, у которых уже есть классы
+  &[class] {
     text-decoration: none;
   }
 
 }
 
-:focus-visible { // при фокусировке с клавиатуры
+:focus-visible {
   outline: 2px dashed var(--color-white);
   outline-offset: 4px;
   transition-duration: 0s !important;
