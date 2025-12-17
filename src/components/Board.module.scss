@@ -76,10 +76,10 @@
   z-index: 500;
 
   &.black {
-    background: radial-gradient(at 30% 30%, #515151 0%, var(--color-black) 100%);
+    background-image: radial-gradient(at 30% 30%, #515151 0%, var(--color-black) 100%);
   }
 
   &.white {
-    background: radial-gradient(at 30% 30%, var(--color-white) 10%, #9a9a9a 100%);
+    background-image: radial-gradient(at 30% 30%, var(--color-white) 10%, #9a9a9a 100%);
   }
 }
