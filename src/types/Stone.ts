@@ -1,6 +1,7 @@
+import type {Coordinate} from "./Coordinate.ts";
+
 export type Stone = {
-    x: number
-    y: number
+    coordinate: Coordinate
     type: StoneType
 }
 

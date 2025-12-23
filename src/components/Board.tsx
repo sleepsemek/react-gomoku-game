@@ -2,11 +2,13 @@ import type {Stone} from "../types/Stone.ts"
 import style from "./Board.module.scss"
 import clsx from "clsx";
 import {useEffect, useRef, useState} from "react";
+import type {Coordinate} from "../types/Coordinate.ts";
+import type {SerializedMap} from "../utils/SerializedMap.ts";
 
 const BOARD_SIZE = 15
 
 type BoardProps = {
-    stones: Map<string, Stone>,
+    stones: SerializedMap<Coordinate, Stone>,
     onCellClick?: (x: number, y: number) => void,
 }
 
@@ -72,7 +74,7 @@ export default function Board({stones, onCellClick}: BoardProps) {
                 {Array.from({length: BOARD_SIZE * BOARD_SIZE}, (_, i) => {
                     const x = i % BOARD_SIZE
                     const y = Math.floor(i / BOARD_SIZE)
-                    const stone = stones.get(`${x},${y}`)
+                    const stone = stones.get({ x, y })
                     const isCursor = cursor.x === x && cursor.y === y
 
                     return (

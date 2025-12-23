@@ -95,4 +95,23 @@ describe('checkWinner', () => {
 
         expect(result).toBeUndefined()
     })
+
+    it('should return undefined when there is no winning line (covering else break paths)', () => {
+        const stones: Stone[] = [
+            { x: 7, y: 7, type: 'black' },
+            { x: 7, y: 8, type: 'black' },
+            { x: 8, y: 7, type: 'black' },
+            { x: 7, y: 6, type: 'white' },
+            { x: 6, y: 7, type: 'white' },
+            { x: 6, y: 6, type: 'white' },
+            { x: 8, y: 8, type: 'white' },
+        ];
+
+        const board = createBoard(stones);
+        const lastStone = stones[0];
+
+        const result = checkWinner(board, lastStone);
+
+        expect(result).toBeUndefined();
+    });
 })

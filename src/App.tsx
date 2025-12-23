@@ -5,10 +5,12 @@ import type {Stone, StoneType} from "./types/Stone.ts"
 import type {GameState} from "./types/GameState.ts"
 import clsx from "clsx"
 import {checkWinner} from "./utils/checkWinner.ts";
+import type {Coordinate} from "./types/Coordinate.ts";
+import {SerializedMap} from "./utils/SerializedMap.ts";
 
 function App() {
     const initialState: GameState = {
-        board: new Map<string, Stone>(),
+        board: new SerializedMap<Coordinate, Stone>(),
         currentPlayer: 'black',
         history: [],
         hasStarted: false,
@@ -22,12 +24,12 @@ function App() {
     const handleCellClick = (x: number, y: number) => {
         if (!game.hasStarted || game.winner) return
 
-        const key = `${x},${y}`
-        if (game.board.has(key)) return
+        const coordinate: Coordinate = {x, y}
+        if (game.board.has(coordinate)) return
 
         setGame(prev => {
-            const newStone: Stone = { x, y, type: prev.currentPlayer }
-            const newBoard = new Map(prev.board).set(`${x},${y}`, newStone)
+            const newStone: Stone = { coordinate, type: prev.currentPlayer }
+            const newBoard = new SerializedMap(prev.board).set(coordinate, newStone)
             const winner = checkWinner(newBoard, newStone)
 
             if (winner) setShowEndModal(true)
@@ -54,10 +56,10 @@ function App() {
         setGame(prev => {
             if (prev.history.length === 0) return prev
             const newHistory = prev.history.slice(0, -1)
-            const lastStone = prev.history[prev.history.length - 1]
+            const { x, y } = prev.history[prev.history.length - 1].coordinate
 
-            const newBoard = new Map(prev.board)
-            newBoard.delete(`${lastStone.x},${lastStone.y}`)
+            const newBoard = new SerializedMap(prev.board)
+            newBoard.delete({ x, y })
 
             return {
                 ...prev,
@@ -118,14 +120,15 @@ function App() {
                             <h2>Последние ходы</h2>
                             <ul className={style.historyList}>
                                 {game.history.slice(-10).map((stone, index, arr) => {
-                                    const actualIndex = game.history.length - arr.length + index;
+                                    const actualIndex = game.history.length - arr.length + index
+                                    const { x, y } = stone.coordinate
                                     return (
                                         <li key={actualIndex} className={style.historyItem}>
                                             {actualIndex + 1}
                                             <span className={clsx(style.stone, style[stone.type])}></span>
-                                            {String.fromCharCode(stone.x + 97)}, {Math.abs(stone.y - 15)}
+                                            {String.fromCharCode(x + 97)}, {Math.abs(y - 15)}
                                         </li>
-                                    );
+                                    )
                                 })}
                             </ul>
                         </div>
